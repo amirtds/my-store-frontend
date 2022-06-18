@@ -49,10 +49,62 @@ export default function Home({ featuredProduct, allProducts }) {
 
 // 1. GQL Queries to get data from Strapi
 // 1.1 featured product
-const FEATURED_PRODUCT_QUERY = "REPLACE_WITH_QUERY";
+const FEATURED_PRODUCT_QUERY = gql`
+  query {
+    products(filters: {featured: {eq: true}}) {
+      data {
+        id
+        attributes {
+          name
+          description
+          price
+          published
+          brand
+          color
+          size
+          quantity
+          discount_price
+          discount_start_date
+          discount_end_date
+          category
+          imageUrl
+          currency
+          bestseller
+          featured
+        }
+      }
+    }
+  }
+`;
 
 // 1.2 all products
-const ALL_PRODUCTS_QUERY = "REPLACE_WITH_QUERY"
+const ALL_PRODUCTS_QUERY = gql`
+  query {
+    products(pagination: {pageSize: 50}) {
+      data {
+        id
+        attributes {
+          name
+          description
+          price
+          published
+          brand
+          color
+          size
+          quantity
+          discount_price
+          discount_start_date
+          discount_end_date
+          category
+          imageUrl
+          currency
+          bestseller
+          featured
+        }
+      }
+    }
+  }
+`;
 
 
 export const getStaticProps = async () => {
